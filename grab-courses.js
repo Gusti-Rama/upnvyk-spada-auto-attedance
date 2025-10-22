@@ -33,6 +33,10 @@ async function getCourseData(page) {
   await Promise.all([page.waitForNavigation(), attedanceLink.click()]);
   await page.waitForNetworkIdle();
 
+  const allLink = await page.$("::-p-xpath(//a[text()='All'])")
+
+  await Promise.all([page.waitForNavigation(), allLink.click()]);
+
   const dateTimeList = await page.$$(".datecol.cell.c0");
   const [date, timeRange] = await dateTimeList
     .at(-1)
